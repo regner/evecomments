@@ -9,6 +9,7 @@ from evecomments.sites.models import SiteModel
 
 blueprint = Blueprint('sites', __name__, static_folder='../static')
 
+
 @blueprint.route('/sites/', methods=('GET', 'POST'))
 def all_sites():
     add_site_form = AddSiteForm()
@@ -26,3 +27,16 @@ def all_sites():
     }
 
     return render_template('sites/all_sites.html', template_values=template_values)
+
+
+@blueprint.route('/sites/<int:site_id>/', methods=('GET', ))
+def site_details(site_id):
+    site = SiteModel.query.filter_by(id=site_id).first()
+
+    #site.comments.all()
+
+    template_values = {
+        'site' : site,
+    }
+
+    return render_template('sites/site_details.html', template_values=template_values)

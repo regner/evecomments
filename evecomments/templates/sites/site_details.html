@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#details" role="tab" data-toggle="tab">Details</a></li>
+                <li><a href="#comments" role="tab" data-toggle="tab">Comments</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="details">
+                    {{ template_values.site.id }}
+                    {{ template_values.site.name }}
+                </div>
+                <div class="tab-pane" id="comments">
+                    {% for comment in template_values.site.comments %}
+                        {{ comment.id }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
