@@ -1,38 +1,40 @@
 {% extends "base.html" %}
 {% block body %}
+
     <div class="row">
         <div class="col-md-12">
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-heading">Sites</div>
-            <div class="panel-body">
-                <p>
-                    Here is a listing of sites that already exist.
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#add_review">
-                        Add New Site
-                    </button>
-                </p>
-            </div>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for entry in template_values.sites %}
+            <div class="panel panel-default">
+                <div class="panel-heading">Sites</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>Here is a listing of sites that already exist.
+                            You can edit, delete, or view details.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#add_review">
+                                Add New Site
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <td>{{ entry.id }}</td>
-                            <td>{{ entry.name }}</td>
+                            <th>ID</th>
+                            <th>Name</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for entry in template_values.sites %}
+                            <tr>
+                                <td>{{ entry.id }}</td>
+                                <td>{{ entry.name }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
