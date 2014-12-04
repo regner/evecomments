@@ -7,6 +7,7 @@ from evecomments.extensions import db, api, login_manager
 
 # Import views for registering their blueprints
 from evecomments.public     import views as public_views
+from evecomments.sites      import views as sites_views
 
 # Import APIs for registering their resources
 from evecomments.comments   import api as comments_api
@@ -47,5 +48,6 @@ def register_blueprints(app):
     """ Registers all relevant blueprints for the application """
 
     app.register_blueprint(public_views.blueprint)
+    app.register_blueprint(sites_views.blueprint)
 
     return None

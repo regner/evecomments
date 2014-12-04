@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">Sites</div>
+            <div class="panel-body">
+                <p>
+                    Here is a listing of sites that already exist.
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#add_review">
+                        Add New Site
+                    </button>
+                </p>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in template_values.sites %}
+                        <tr>
+                            <td>{{ entry.id }}</td>
+                            <td>{{ entry.name }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div>
+        <div class="modal fade" id="add_review" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add Review</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" class="form-horizontal" role="form" action="{{ url_for('sites.all_sites') }}">
+                            {{ template_values.add_site_form.hidden_tag() }}
+
+                            <div class="form-group">
+                                <label for="{{ template_values.add_site_form.name.id }}" class="control-label col-sm-2">{{ template_values.add_site_form.name.label }}</label>
+                                <div class="col-sm-10">
+                                    {{ template_values.add_site_form.name(size=30, class="form-control", placeholder="Name of the new site.") }}
+                                </div>
+                            </div>
+
+                            <input type="submit" class="btn btn-primary" value="Submit Review">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
