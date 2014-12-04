@@ -1,5 +1,8 @@
 """ Each extension is initialized in the application factory. """
 
+from flask.ext.sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
+
 from flask.ext.restful import Api
 api = Api()
 

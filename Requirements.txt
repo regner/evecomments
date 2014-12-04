@@ -1,7 +1,10 @@
-Flask
+Flask-SQLAlchemy
+Flask-Migrate
 Flask-RESTful
 Flask-Script
 Flask-Login
 Flask-WTF
+Flask
 
 requests
+pymysql

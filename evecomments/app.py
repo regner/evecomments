@@ -2,9 +2,14 @@
 
 from flask import Flask
 
-from evecomments.settings     import DevConfig
-from evecomments.extensions   import api, login_manager
-from evecomments.public.views import blueprint as public_blueprint
+from evecomments.settings   import DevConfig
+from evecomments.extensions import db, api, login_manager
+
+# Import views for registering their blueprints
+from evecomments.public     import views as public_views
+
+# Import APIs for registering their resources
+from evecomments.comments   import api as comments_api
 
 
 def create_app(config_object=DevConfig):
@@ -23,6 +28,7 @@ def create_app(config_object=DevConfig):
 def register_extensions(app):
     """ Registers all relevant extensions. """
 
+    db.init_app(app)
     api.init_app(app)
     login_manager.init_app(app)
 
@@ -32,7 +38,7 @@ def register_extensions(app):
 def register_resources():
     """ Registers all Flask-RESTful resources. """
 
-    #map.register_resources(api)
+    comments_api.register_resources(api)
 
     return None
 
@@ -40,6 +46,6 @@ def register_resources():
 def register_blueprints(app):
     """ Registers all relevant blueprints for the application """
 
-    app.register_blueprint(public_blueprint)
+    app.register_blueprint(public_views.blueprint)
 
     return None

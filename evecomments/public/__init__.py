@@ -1,3 +1,3 @@
 
 
-from .views import blueprint
+from . import views
