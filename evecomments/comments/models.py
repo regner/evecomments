@@ -11,12 +11,17 @@ class CommentModel(db.Model):
 
     __tablename__ = 'comments'
 
-    id      = db.Column(db.Integer, primary_key=True)
-    site_id = db.Column(db.Integer, db.ForeignKey('sites.id'))
-    site    = db.relationship('SiteModel', backref=db.backref('comments', lazy='dynamic'))
+    id                = db.Column(db.Integer, primary_key=True)
+    site_id           = db.Column(db.Integer, db.ForeignKey('sites.id'), nullable=False)
+    site              = db.relationship('SiteModel', backref=db.backref('comments', lazy='dynamic'))
+    message           = db.Column(db.Text, nullable=False)
+    deleted           = db.Column(db.Boolean, default=False)
+    parent_comment_id = db.Column(db.Integer, db.ForeignKey('comments.id'))
+    parent            = db.relationship('CommentModel', backref=db.backref('children', lazy='dynamic'), remote_side='CommentModel.id')
 
-    def __init__(self, site):
-        self.site = site
+    def __init__(self, site, message):
+        self.site    = site
+        self.message = message
 
     def __repr__(self):
         return '<CommentModel %s>' % self.id

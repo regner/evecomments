@@ -10,18 +10,13 @@ from evecomments.comments.models import CommentModel
 comment_fields = {
     'id'      : fields.Integer,
     'site_id' : fields.Integer,
+    'message' : fields.String,
+    'deleted' : fields.Boolean,
 }
 
 
 class Comment(Resource):
     """ Resource for a single comment. """
-
-    def __init__(self):
-        self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('site_id',    type=int, required=True, location='json')
-        self.reqparse.add_argument('comment_id', type=int, required=True, location='json')
-
-        super(Comment, self).__init__()
 
     def get(self, site_id, comment_id):
         """ Returns a single comment. """
@@ -38,7 +33,8 @@ class Comments(Resource):
 
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('site_id',    type=int, required=True, location='json')
+        self.reqparse.add_argument('message', type=str, required=True,  location='json')
+        self.reqparse.add_argument('parent',  type=int, required=False, location='json')
 
         super(Comments, self).__init__()
 
@@ -60,7 +56,18 @@ class Comments(Resource):
         if site is None:
             abort(404, message='Site {} does not exist.'.format(site_id))
 
-        new_comment = CommentModel(site)
+        args = self.reqparse.parse_args()
+
+        new_comment = CommentModel(site, args['message'])
+
+        if 'parent' in args and args['parent'] is not None:
+            parent = CommentModel.query.filter_by(id=args['parent']).first()
+
+            if parent is None:
+                abort(404, message='Parent comment {} does not exist.'.format(args['parent']))
+
+            new_comment.parent = parent
+
         db.session.add(new_comment)
         db.session.commit()
 
