@@ -1,4 +1,5 @@
 Flask-SQLAlchemy
+Flask-OAuthlib
 Flask-Migrate
 Flask-RESTful
 Flask-Script
