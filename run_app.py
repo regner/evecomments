@@ -23,7 +23,7 @@ manager = Manager(app)
 def _make_context():
     """ Return context dict for a shell session so you can access. """
 
-    return {'app': app}
+    return {'app': app, 'db': db}
 
 
 manager.add_command('server',     Server())
