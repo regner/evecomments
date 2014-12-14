@@ -8,10 +8,11 @@ from evecomments.comments.models import CommentModel
 
 
 comment_fields = {
-    'id'      : fields.Integer,
-    'site_id' : fields.Integer,
-    'message' : fields.String,
-    'deleted' : fields.Boolean,
+    'id'         : fields.Integer,
+    'site_id'    : fields.Integer,
+    'message'    : fields.String,
+    'deleted'    : fields.Boolean,
+    'created_on' : fields.DateTime,
 }
 
 

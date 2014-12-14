@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <div>testing 123</div>
+
+        <div>
+            <form method="POST" class="form-horizontal" role="form" action="{{ url_for('comments.embed', site_id=template_values.site_id) }}">
+                {{ template_values.add_comment_form.hidden_tag() }}
+
+                <div class="form-group">
+                    <label for="{{ template_values.add_comment_form.message.id }}" class="control-label col-sm-2">{{ template_values.add_comment_form.message.label }}</label>
+                    <div class="col-sm-10">
+                        {{ template_values.add_comment_form.message(class="form-control", placeholder="message.", rows=4) }}
+                    </div>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Submit Comment">
+            </form>
+        </div>
+    </body>
+</html>

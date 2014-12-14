@@ -18,6 +18,7 @@ class CommentModel(db.Model):
     deleted           = db.Column(db.Boolean, default=False)
     parent_comment_id = db.Column(db.Integer, db.ForeignKey('comments.id'))
     parent            = db.relationship('CommentModel', backref=db.backref('children', lazy='dynamic'), remote_side='CommentModel.id')
+    created_on        = db.Column(db.DateTime, default=db.func.now())
 
     def __init__(self, site, message):
         self.site    = site
