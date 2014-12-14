@@ -1,6 +1,8 @@
 <html>
     <body>
-        <div>testing 123</div>
+        <div>
+
+        </div>
 
         <div>
             <form method="POST" class="form-horizontal" role="form" action="{{ url_for('comments.embed', site_id=template_values.site_id) }}">
@@ -13,7 +15,11 @@
                     </div>
                 </div>
 
-                <input type="submit" class="btn btn-primary" value="Submit Comment">
+                {% if current_user and current_user.is_authenticated() %}
+                    <input type="submit" class="btn btn-primary" value="Submit Comment">
+                {% else %}
+
+                {% endif %}
             </form>
         </div>
     </body>

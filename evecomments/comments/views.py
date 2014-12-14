@@ -27,8 +27,11 @@ def embed(site_id):
         db.session.add(new_comment)
         db.session.commit()
 
+    comments = CommentModel.query.filter_by(site_id=site_id).all()
+
     template_values = {
         'site_id'          : site_id,
+        'comments'         : comments,
         'add_comment_form' : add_comment_form,
     }
 
