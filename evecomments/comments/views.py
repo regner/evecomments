@@ -1,7 +1,6 @@
 
 
 from flask           import Blueprint, render_template, abort
-from flask.ext.login import current_user
 
 from evecomments.comments.forms   import AddCommentForm
 from evecomments.comments.models  import CommentModel
