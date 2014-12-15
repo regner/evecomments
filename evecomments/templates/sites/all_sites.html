@@ -1,5 +1,5 @@
-{% extends "base.html" %}
-{% block body %}
+{% extends "base_with_nav.html" %}
+{% block content %}
     {% if template_values.add_site_form.errors %}
         <ul class="errors">
             {% for field_name, field_errors in template_values.add_site_form.errors|dictsort if field_errors %}
@@ -38,7 +38,11 @@
                         {% for entry in template_values.sites %}
                             <tr>
                                 <td>{{ entry.id }}</td>
-                                <td>{{ entry.name }}</td>
+                                <td>
+                                    <a href="{{ url_for('sites.site_details', site_id=entry.id) }}">
+                                        {{ entry.name }}
+                                    </a>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

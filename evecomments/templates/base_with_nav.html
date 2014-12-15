@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block body %}
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('public.home') }}">EVE Comments</a>
+            </div>
+
+            <a href="{{ url_for('sites.all_sites') }}">Sites</a>
+
+            {% if current_user and current_user.is_authenticated() %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="navbar-link" href=""><img src="{{ current_user.get_image_server_link(32) }}"  class="img-rounded" /></a>
+                    </li>
+                    <li>
+                        <p class="navbar-text">
+                            <a class="navbar-link" href="">Logged in as {{ current_user.name }}</a>
+                        </p>
+                    </li>
+                    <li>
+                        <a class="navbar-link" href="{{ url_for('user.logout') }}">Logout</a>
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{{ url_for('user.login') }}" class="ssoLogin" data-popup='width=560, height=560'>
+                            <img src="{{ url_for('static', filename='img/eve_sso_white_small.png') }}" />
+                        </a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+    {% block content %}{% endblock %}
+{% endblock %}
