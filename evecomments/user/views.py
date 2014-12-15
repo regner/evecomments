@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from flask           import Blueprint, request, session, redirect, url_for
+from flask           import Blueprint, request, session, redirect, url_for, render_template
 from flask.ext.login import login_user, logout_user
 
 from evecomments.user.models import UserModel
@@ -54,7 +54,7 @@ def authorized():
 
     login_user(user)
 
-    return redirect(url_for('public.home'))
+    return render_template('user/callback.html')
 
 
 @evesso.tokengetter

@@ -28,7 +28,11 @@
             </ul>
         {% else %}
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ url_for('user.login') }}">Login</a></li>
+                <li>
+                    <a href="{{ url_for('user.login') }}" class="ssoLogin" data-popup='width=560, height=560'>
+                        <img src="{{ url_for('static', filename='img/eve_sso_white_small.png') }}" />
+                    </a>
+                </li>
             </ul>
         {% endif %}
     </div>

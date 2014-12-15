@@ -1,9 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/evecomments.js') }}"></script>
+    </head>
     <body>
-        <div>
-
-        </div>
-
         <div>
             <form method="POST" class="form-horizontal" role="form" action="{{ url_for('comments.embed', site_id=template_values.site_id) }}">
                 {{ template_values.add_comment_form.hidden_tag() }}
@@ -18,7 +20,9 @@
                 {% if current_user and current_user.is_authenticated() %}
                     <input type="submit" class="btn btn-primary" value="Submit Comment">
                 {% else %}
-                    <a href="{{ url_for('user.login') }}" target="_blank"><img src="{{ url_for('static', filename='img/eve_sso_white_small.png') }}" /></a>
+                    <a href="{{ url_for('user.login') }}" class="ssoLogin" data-popup='width=560, height=560'>
+                        <img src="{{ url_for('static', filename='img/eve_sso_white_small.png') }}" />
+                    </a>
                 {% endif %}
             </form>
         </div>
