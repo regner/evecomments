@@ -13,7 +13,7 @@
                 </div>
                 <div class="tab-pane" id="comments">
                     {% for comment in template_values.site.comments %}
-                        {{ comment.id }}
+                        {{ macros.add_comment(comment) }}
                     {% endfor %}
                 </div>
             </div>

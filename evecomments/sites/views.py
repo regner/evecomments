@@ -38,8 +38,6 @@ def site_details(site_id):
     if site is None:
         abort(404)
 
-    #site.comments.all()
-
     template_values = {
         'site' : site,
     }
