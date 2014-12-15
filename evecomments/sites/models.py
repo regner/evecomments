@@ -8,11 +8,13 @@ class SiteModel(db.Model):
 
     __tablename__ = 'sites'
 
-    id   = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50))
+    id    = db.Column(db.Integer, primary_key=True)
+    name  = db.Column(db.String(50))
+    owner = db.Column(db.Integer)
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, name, owner):
+        self.name  = name
+        self.owner = owner
 
     def __repr__(self):
         return '<SiteModel %s>' % self.id
