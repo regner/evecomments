@@ -18,7 +18,7 @@
                 {% if current_user and current_user.is_authenticated() %}
                     <input type="submit" class="btn btn-primary" value="Submit Comment">
                 {% else %}
-
+                    <a href="{{ url_for('user.login') }}" target="_blank"><img src="{{ url_for('static', filename='img/eve_sso_white_small.png') }}" /></a>
                 {% endif %}
             </form>
         </div>

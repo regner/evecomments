@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block body %}
-    <div id="evecomments"></div>
+    <div id="evecomments">
+        <iframe allowtransparency="true" frameborder="0" src="http://localhost:5000/comments/1/embed" style="width: 100%; height: 100%; border: none; overflow: hidden;" scrolling="no" horizontalscrolling="no" verticalscrolling="no"></iframe>
+    </div>
+    <!--
     <script type="text/javascript">
         console.log('test');
 
@@ -19,4 +22,5 @@
             div.appendChild(ifrm);
         })();
     </script>
+    -->
 {% endblock %}
