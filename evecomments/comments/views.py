@@ -30,8 +30,6 @@ def embed(site_id):
 
     comments = CommentModel.query.filter_by(site_id=site_id).all()
 
-    print comments[-1].message
-
     template_values = {
         'site_id'          : site_id,
         'comments'         : comments,

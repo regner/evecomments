@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 {% block body %}
-    <div class="row">
-        {% for comment in template_values.comments %}
-            {{ macros.add_comment(comment) }}
-        {% endfor %}
-    </div>
+    {% if template_values.add_comment_form.errors %}
+        <div class="alert alert-error">
+            <ul class="errors">
+                {% for field_name, field_errors in template_values.add_comment_form.errors|dictsort if field_errors %}
+                    {% for error in field_errors %}
+                        <li>{{ template_values.add_comment_form[field_name].label }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 
     <div class="row">
         <form method="POST" class="form-horizontal" role="form" action="{{ url_for('comments.embed', site_id=template_values.site_id) }}">
@@ -25,5 +31,11 @@
                 </a>
             {% endif %}
         </form>
+    </div>
+
+    <div class="row">
+        {% for comment in template_values.comments %}
+            {{ macros.add_comment(comment) }}
+        {% endfor %}
     </div>
 {% endblock %}
