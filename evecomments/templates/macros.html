@@ -4,7 +4,7 @@
             <img src="{{ comment.author.get_image_server_link(64) }}" class="img-rounded" />
         </div>
         <div class="">
-            {{ comment.message }}
+            <pre>{{ comment.message }}</pre>
         </div>
     </div>
 {% endmacro %}
