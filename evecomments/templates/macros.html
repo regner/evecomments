@@ -1,10 +1,16 @@
 {% macro add_comment(comment) %}
-    <div class="row">
+    <div class="row comment-row">
         <div class="pull-left">
             <img src="{{ comment.author.get_image_server_link(64) }}" class="img-rounded" />
         </div>
         <div class="">
-            <pre>{{ comment.message }}</pre>
+            <div>
+                {{ comment.author.name }} | {{ comment.created_on }}
+            </div>
+            <div>
+                <pre>{{ comment.message }}</pre>
+            </div>
+            <div></div>
         </div>
     </div>
 {% endmacro %}
