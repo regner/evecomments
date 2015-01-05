@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/evecomments_comments.css') }}">
+{% endblock %}
+
 {% block body %}
     {% if template_values.add_comment_form.errors %}
         <div class="alert alert-error">

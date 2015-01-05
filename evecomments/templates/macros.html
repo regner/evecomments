@@ -3,14 +3,16 @@
         <div class="pull-left">
             <img src="{{ comment.author.get_image_server_link(64) }}" class="img-rounded" />
         </div>
-        <div class="">
-            <div>
+        <div class="comment-content">
+            <div class="comment-header">
                 {{ comment.author.name }} | {{ comment.created_on }}
             </div>
-            <div>
+            <div class="comment-body">
                 <pre>{{ comment.message }}</pre>
             </div>
-            <div></div>
+            <div class="comment-footer">
+                Some stuff for a footer here
+            </div>
         </div>
     </div>
 {% endmacro %}
