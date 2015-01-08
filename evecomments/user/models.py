@@ -1,6 +1,6 @@
 
 
-from eve_utils.image_server import get_image_server_link
+from eve_utils.image_server import get_image_server_link, get_character_image_links
 
 from evecomments.extensions import db
 
@@ -45,3 +45,6 @@ class UserModel(db.Model):
 
     def get_image_server_link(self, icon_size=128):
         return get_image_server_link(self.id, 'char', icon_size)
+
+    def get_image_server_links(self):
+        return get_character_image_links(self.id)
