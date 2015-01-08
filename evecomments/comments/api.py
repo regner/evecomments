@@ -1,35 +1,43 @@
 
 
-from flask.ext.restful import Resource, reqparse, fields, marshal, abort
+from flask.ext.restful import Resource, reqparse, abort
 
 from evecomments.extensions      import db
 from evecomments.sites.models    import SiteModel
 from evecomments.comments.models import CommentModel
 
 
-comment_fields = {
-    'id'         : fields.Integer,
-    'site_id'    : fields.Integer,
-    'message'    : fields.String,
-    'deleted'    : fields.Boolean,
-    'created_on' : fields.DateTime,
-}
+def format_comment_v1(comment):
+    """ Takes a single CommentModel object and formats it into a V1 API response """
+
+    formatted_response = {
+        'id'                 : comment.id,
+        'site_id'            : comment.site_id,
+        'message'            : comment.message,
+        'created_on'         : comment.created_on.isoformat(),
+        'parent_comment_id'  : comment.parent_comment_id,
+        'author_id'          : comment.author_id,
+        'author_name'        : comment.author.name,
+        'author_image_links' : comment.author.get_image_server_links()
+    }
+
+    return formatted_response
 
 
-class Comment(Resource):
+class CommentV1(Resource):
     """ Resource for a single comment. """
 
     def get(self, site_id, comment_id):
         """ Returns a single comment. """
 
-        data = CommentModel.query.filter_by(id=comment_id).first()
-        if data is None:
+        comment = CommentModel.query.filter_by(id=comment_id).first()
+        if comment is None:
             abort(404, message='Comment {} does not exist.'.format(comment_id))
 
-        return marshal(data, comment_fields)
+        return format_comment_v1(comment)
 
 
-class Comments(Resource):
+class CommentCollectionV1(Resource):
     """ Resource for getting all comments and creating new ones. """
 
     def __init__(self):
@@ -37,7 +45,7 @@ class Comments(Resource):
         self.reqparse.add_argument('message', type=str, required=True,  location='json')
         self.reqparse.add_argument('parent',  type=int, required=False, location='json')
 
-        super(Comments, self).__init__()
+        super(CommentCollectionV1, self).__init__()
 
     def get(self, site_id):
         """ Returns a list of all comments. """
@@ -47,8 +55,9 @@ class Comments(Resource):
             abort(404, message='Site {} does not exist.'.format(site_id))
 
         comments = CommentModel.query.filter_by(site_id=site_id).all()
+        formatted_comments = [format_comment_v1(comment) for comment in comments]
 
-        return marshal(comments, comment_fields)
+        return formatted_comments
 
     def post(self, site_id):
         """ Creates a new comment. """
@@ -72,11 +81,11 @@ class Comments(Resource):
         db.session.add(new_comment)
         db.session.commit()
 
-        return marshal(new_comment, comment_fields)
+        return format_comment_v1(new_comment)
 
 
 def register_resources(api):
     """ Registers the API resources defined in this file with the app in it's application factory. """
 
-    api.add_resource(Comments, '/api/comments/<int:site_id>/',                  endpoint='comments')
-    api.add_resource(Comment,  '/api/comments/<int:site_id>/<int:comment_id>/', endpoint='comment')
+    api.add_resource(CommentCollectionV1, '/api/v1/comments/<int:site_id>/',                  endpoint='comments')
+    api.add_resource(CommentV1,           '/api/v1/comments/<int:site_id>/<int:comment_id>/', endpoint='comment')
