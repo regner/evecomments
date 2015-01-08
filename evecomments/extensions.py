@@ -4,7 +4,8 @@ from flask.ext.sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 from flask.ext.restful import Api
-api = Api()
+from flask.ext.restful.utils.cors import crossdomain
+api = Api(decorators=[crossdomain(origin='*')])
 
 from flask.ext.login         import LoginManager
 login_manager = LoginManager()
