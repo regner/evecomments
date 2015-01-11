@@ -87,5 +87,5 @@ class CommentCollectionV1(Resource):
 def register_resources(api):
     """ Registers the API resources defined in this file with the app in it's application factory. """
 
-    api.add_resource(CommentCollectionV1, '/api/v1/comments/<int:site_id>/',                  endpoint='comments')
-    api.add_resource(CommentV1,           '/api/v1/comments/<int:site_id>/<int:comment_id>/', endpoint='comment')
+    api.add_resource(CommentCollectionV1, '/api/v1/comments/<int:site_id>',                  endpoint='comments')
+    api.add_resource(CommentV1,           '/api/v1/comments/<int:site_id>/<int:comment_id>', endpoint='comment')
