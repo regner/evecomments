@@ -78,7 +78,7 @@ class CommentCollectionV1(Resource):
 
         # Start by fetching the site the comment is for
         site = SiteModel.query.filter_by(id=site_id).first()
-        
+
         if site is None:
             abort(404, message='Site {} does not exist.'.format(site_id))
 
