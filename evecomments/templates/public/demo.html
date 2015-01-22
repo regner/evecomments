@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+
+        <div id="evecomments_thread"></div>
+
+        <script type="text/javascript">
+            var ec_site_id = 'regnersblog';
+            var ec_thread_id = '/2015/01/12/hello-world/';
+            var ec_thread_title = 'Hello World';
+            var ec_thread_url = 'http://regner.github.io/2015/01/12/hello-world/';
+
+            (function() {
+                var evecomments = document.createElement('script');
+                evecomments.type = 'text/javascript';
+                evecomments.async = true;
+                evecomments.src = 'http://localhost:5000/static/js/embed.js';
+
+                (document.getElementsByTagName('head')[0]).appendChild(evecomments);
+            })();
+        </script>
+
+        <noscript>Please enable JavaScript to view the comments powered by EVE Comments.</noscript>
+
+    </body>
+</html>
