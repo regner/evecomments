@@ -1,26 +1,4 @@
 {% extends "base_with_nav.html" %}
 {% block content %}
-    <div id="evecomments">
-        <iframe allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" width="100%" src="http://localhost:5000/comments/1/embed" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 2677px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe>
-    </div>
-    <!--
-    <script type="text/javascript">
-        console.log('test');
-
-        var evecomments_div_id = 'evecomments'
-        var evecomments_site_identifier = '1';
-        var evecomments_thread_identifier = '1';
-
-        (function() {
-            var evecomments = document.createElement('script'); evecomments.type = 'text/javascript';
-
-            var ifrm = document.createElement("iframe");
-            ifrm.setAttribute('src', 'http://localhost:5000/comments/' + evecomments_site_identifier + '/embed');
-            ifrm.style.width = '100%';
-
-            var div = document.getElementById(evecomments_div_id);
-            div.appendChild(ifrm);
-        })();
-    </script>
-    -->
+    <p>Be sure to check the demo out <a href="{{ url_for('public.demo') }}">here</a>.</p>
 {% endblock %}
