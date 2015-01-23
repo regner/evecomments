@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var ec_comments_uri = 'http://localhost:5000/comments/embed';
+    var ec_comments_uri = 'http://{{ request.host }}/comments/embed';
 
     window.onload = addIframe;
 

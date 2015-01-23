@@ -12,3 +12,7 @@ def home():
 @blueprint.route('/demo')
 def demo():
     return render_template('public/demo.html')
+
+@blueprint.route('/embed.js')
+def embed():
+    return render_template('public/embed.js')

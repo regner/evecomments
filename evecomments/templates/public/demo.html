@@ -18,7 +18,7 @@
                 var evecomments = document.createElement('script');
                 evecomments.type = 'text/javascript';
                 evecomments.async = true;
-                evecomments.src = 'http://localhost:5000/static/js/embed.js';
+                evecomments.src = 'http://{{ request.host }}/static/js/embed.js';
 
                 (document.getElementsByTagName('head')[0]).appendChild(evecomments);
             })();
