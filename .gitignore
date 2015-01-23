@@ -3,3 +3,4 @@
 .vagrant/
 env/
 evecomments/evecomments.db
+evecomments/static/vendor/
