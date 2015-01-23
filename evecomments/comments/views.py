@@ -12,9 +12,9 @@ from evecomments.extensions       import db
 blueprint = Blueprint('comments', __name__, static_folder='../static')
 
 
-@blueprint.route('/comments/<int:site_id>/embed', methods=('GET', 'POST', ))
+@blueprint.route('/comments/embed', methods=('GET', 'POST', ))
 @login_required_for_post
-def embed(site_id):
+def embed():
     site = SiteModel.query.filter_by(id=site_id).first()
 
     if site is None:
