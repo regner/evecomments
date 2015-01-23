@@ -9,7 +9,11 @@
         var comments_div = document.getElementById('evecomments_thread');
         var iframe       = document.createElement('iframe');
 
+        iframe.setAttribute('title',             'EVE Comments');
         iframe.setAttribute('allowTransparency', 'true');
+        iframe.setAttribute('height',            '100%');
+        iframe.setAttribute('width',             '100%');
+        iframe.setAttribute('style',             'height: 1100% !important; width: 100% !important');
         iframe.setAttribute('scrolling',         'no');
         iframe.setAttribute('frameBorder',       '0');
         iframe.setAttribute('src',               getCommentsUrl())
