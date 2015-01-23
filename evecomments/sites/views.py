@@ -16,11 +16,14 @@ def all_sites():
     add_site_form = AddSiteForm()
 
     if add_site_form.validate_on_submit():
-        new_site = SiteModel(add_site_form.name.data, current_user.get_id())
+
+
+        new_site = SiteModel(add_site_form.id.data, add_site_form.name.data, current_user)
+
         db.session.add(new_site)
         db.session.commit()
 
-    sites = SiteModel.query.filter_by(owner=current_user.get_id()).all()
+    sites = SiteModel.query.filter_by(owner=current_user).all()
 
     template_values = {
         'sites'         : sites,
@@ -30,10 +33,10 @@ def all_sites():
     return render_template('sites/all_sites.html', template_values=template_values)
 
 
-@blueprint.route('/sites/<int:site_id>/', methods=('GET', ))
+@blueprint.route('/sites/<string:site_id>/', methods=('GET', ))
 @login_required
 def site_details(site_id):
-    site = SiteModel.query.filter_by(id=site_id, owner=current_user.get_id()).first()
+    site = SiteModel.query.filter_by(id=site_id, owner=current_user).first()
 
     if site is None:
         abort(404)
