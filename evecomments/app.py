@@ -11,9 +11,6 @@ from evecomments.public     import views as public_views
 from evecomments.sites      import views as sites_views
 from evecomments.user       import views as user_views
 
-# Import APIs for registering their resources
-from evecomments.comments   import api as comments_api
-
 
 def create_app(config_object=DevConfig):
     """ EVEComments application factory. """
@@ -21,7 +18,6 @@ def create_app(config_object=DevConfig):
     app = Flask(__name__)
     app.config.from_object(config_object)
 
-    register_resources()
     register_blueprints(app)
     register_extensions(app)
 
@@ -35,14 +31,6 @@ def register_extensions(app):
     api.init_app(app)
     oauth.init_app(app)
     login_manager.init_app(app)
-
-    return None
-
-
-def register_resources():
-    """ Registers all Flask-RESTful resources. """
-
-    comments_api.register_resources(api)
 
     return None
 
