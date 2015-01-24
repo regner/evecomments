@@ -15,7 +15,7 @@ $(document).ready(function(){
     window.onresize = function(){
         parent.postMessage(document.body.offsetHeight, '*');
     };
-})
+});
 
 function closeAndRefreshParent(){
     window.opener.location.reload();

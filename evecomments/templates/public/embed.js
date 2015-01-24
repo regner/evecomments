@@ -13,7 +13,7 @@
 
         createEventListener();
 
-    };
+    }
 
     function createEventListener() {
         var event_method  = window.addEventListener ? "addEventListener" : "attachEvent";
@@ -24,7 +24,7 @@
             if (event.origin !== 'http://{{ request.host }}' || isNaN(event.data)) return;
             document.getElementById('ec_iframe').style.height = event.data + 'px';
         }, false);
-    };
+    }
 
     function createIframe() {
         var iframe = document.createElement('iframe');
@@ -40,25 +40,23 @@
         iframe.setAttribute('src',               getCommentsUrl());
 
         return iframe
-    };
+    }
 
     function getCommentsUrl() {
         var config     = getConfigObject();
         var url_params = encodeQueryData(config)
 
         return ec_comments_uri + '?' + url_params;
-    };
+    }
 
     function getConfigObject() {
-        var config = {
+        return {
             'ec_site_id':      ec_site_id,
             'ec_thread_id':    ec_thread_id,
             'ec_thread_title': ec_thread_title,
             'ec_thread_url':   ec_thread_url
         }
-
-        return config
-    };
+    }
 
     function encodeQueryData(data) {
         var ret = [];
@@ -66,5 +64,5 @@
         for (var d in data) ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
 
         return ret.join("&");
-    };
+    }
 }());
