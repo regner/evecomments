@@ -3,13 +3,11 @@ $(document).ready(function(){
     $('.ssoLogin').click(function(event){
         event.preventDefault();
 
-        var $this = $(this);
+        var url         = $(this).attr('href');
+        var window_name = 'popUp';
+        var window_size = $(this).data('popup');
 
-        var url = $this.attr('href');
-        var windowName = 'popUp';
-        var windowSize = $this.data('popup');
-
-        window.open(url, windowName, windowSize)
+        window.open(url, window_name, window_size)
     });
 
     parent.postMessage(document.body.offsetHeight, '*');
