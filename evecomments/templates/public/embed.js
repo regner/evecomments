@@ -7,27 +7,46 @@
 
     function addIframe() {
         var comments_div = document.getElementById('evecomments_thread');
-        var iframe       = document.createElement('iframe');
+        var iframe       = createIframe();
 
+        comments_div.appendChild(iframe);
+
+        createEventListener();
+
+    };
+
+    function createEventListener() {
+        var event_method  = window.addEventListener ? "addEventListener" : "attachEvent";
+        var eventer       = window[event_method];
+        var message_event = event_method == "attachEvent" ? "onmessage" : "message";
+
+        eventer(message_event, function(event) {
+        if (event.origin !== 'http://{{ request.host }}' || isNaN(event.data)) return;
+            document.getElementById('ec_iframe').style.height = event.data + 'px';
+        }, false);
+    };
+
+    function createIframe() {
+        var iframe = document.createElement('iframe');
+
+        iframe.setAttribute('style',             'width: 100% !important;');
         iframe.setAttribute('title',             'EVE Comments');
+        iframe.setAttribute('id',                'ec_iframe');
         iframe.setAttribute('allowTransparency', 'true');
         iframe.setAttribute('height',            '100%');
         iframe.setAttribute('width',             '100%');
-        iframe.setAttribute('style',             'height: 1100% !important; width: 100% !important');
         iframe.setAttribute('scrolling',         'no');
         iframe.setAttribute('frameBorder',       '0');
-        iframe.setAttribute('src',               getCommentsUrl())
+        iframe.setAttribute('src',               getCommentsUrl());
 
-        comments_div.appendChild(iframe);
+        return iframe
     };
 
     function getCommentsUrl() {
-        var config    = getConfigObject();
-        var urlParams = encodeQueryData(config)
+        var config     = getConfigObject();
+        var url_params = encodeQueryData(config)
 
-        var commentsUrl = ec_comments_uri + '?' + urlParams
-
-        return commentsUrl
+        return ec_comments_uri + '?' + url_params;
     };
 
     function getConfigObject() {
