@@ -10,7 +10,9 @@ $(document).ready(function(){
         window.open(url, window_name, window_size)
     });
 
-    parent.postMessage(document.body.offsetHeight, '*');
+    window.onresize = function(){
+        parent.postMessage(document.body.offsetHeight, '*');
+    };
 })
 
 function closeAndRefreshParent(){
