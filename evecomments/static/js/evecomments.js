@@ -10,7 +10,9 @@ $(document).ready(function(){
         var windowSize = $this.data('popup');
 
         window.open(url, windowName, windowSize)
-    })
+    });
+
+    parent.postMessage(document.body.offsetHeight, '*');
 })
 
 function closeAndRefreshParent(){
