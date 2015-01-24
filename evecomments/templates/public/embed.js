@@ -21,7 +21,7 @@
         var message_event = event_method == "attachEvent" ? "onmessage" : "message";
 
         eventer(message_event, function(event) {
-        if (event.origin !== 'http://{{ request.host }}' || isNaN(event.data)) return;
+            if (event.origin !== 'http://{{ request.host }}' || isNaN(event.data)) return;
             document.getElementById('ec_iframe').style.height = event.data + 'px';
         }, false);
     };
