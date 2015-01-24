@@ -5,10 +5,11 @@
     <html lang="en">
         <head>
             <title>{% block title %}{% endblock %}</title>
-            <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/dist/css/bootstrap.min.css') }}">
 
-            <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-            <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='vendor/jquery/dist/jquery.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
             <script src="{{ url_for('static', filename='js/evecomments.js') }}"></script>
 
             {% block head %}{% endblock %}
