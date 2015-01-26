@@ -38,7 +38,7 @@ def embed():
         thread = ThreadModel.query.filter_by(id=config['thread_id']).first()
 
         if thread is None:
-            thread = ThreadModel(config['thread_id'], config['thread_title'], config['thread_url'])
+            thread = ThreadModel(config['thread_id'], config['thread_title'], config['thread_url'], site)
 
             db.session.add(thread)
             db.session.commit()
