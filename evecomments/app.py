@@ -1,6 +1,6 @@
 
 
-from flask import Flask
+from flask import Flask, redirect, url_for
 
 from evecomments.settings   import DevConfig
 from evecomments.extensions import db, api, oauth, login_manager
@@ -44,3 +44,8 @@ def register_blueprints(app):
     app.register_blueprint(user_views.blueprint)
 
     return None
+
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect(url_for('user.login'))

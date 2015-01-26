@@ -12,7 +12,6 @@
         comments_div.appendChild(iframe);
 
         createEventListener();
-
     }
 
     function createEventListener() {
@@ -44,7 +43,7 @@
 
     function getCommentsUrl() {
         var config     = getConfigObject();
-        var url_params = encodeQueryData(config)
+        var url_params = encodeQueryData(config);
 
         return ec_comments_uri + '?' + url_params;
     }

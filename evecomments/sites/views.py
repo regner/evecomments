@@ -17,7 +17,6 @@ def all_sites():
 
     if add_site_form.validate_on_submit():
 
-
         new_site = SiteModel(add_site_form.id.data, add_site_form.name.data, current_user)
 
         db.session.add(new_site)
