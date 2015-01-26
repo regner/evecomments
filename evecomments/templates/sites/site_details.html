@@ -5,6 +5,7 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li class="active"><a href="#details" role="tab" data-toggle="tab">Details</a></li>
                 <li><a href="#comments" role="tab" data-toggle="tab">Comments</a></li>
+                <li><a href="#threads" role="tab" data-toggle="tab">Threads</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="details">
@@ -15,6 +16,22 @@
                     {% for comment in template_values.site.comments %}
                         {{ macros.add_comment(comment) }}
                     {% endfor %}
+                </div>
+                <div class="tab-pane" id="threads">
+                    <table class="table">
+                        <tr>
+                            <th>Thread ID</th>
+                            <th>Thread URL</th>
+                            <th>Thread Title</th>
+                        </tr>
+                        {% for thread in template_values.site.threads %}
+                            <tr>
+                                <td>{{ thread.id }}</td>
+                                <td>{{ thread.url }}</td>
+                                <td>{{ thread.title }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
                 </div>
             </div>
         </div>
