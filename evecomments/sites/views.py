@@ -32,7 +32,7 @@ def all_sites():
     return render_template('sites/all_sites.html', template_values=template_values)
 
 
-@blueprint.route('/sites/<string:site_id>/', methods=('GET', ))
+@blueprint.route('/sites/<string:site_id>/details/', methods=('GET', ))
 @login_required
 def site_details(site_id):
     site = SiteModel.query.filter_by(id=site_id, owner=current_user).first()
@@ -45,3 +45,33 @@ def site_details(site_id):
     }
 
     return render_template('sites/site_details.html', template_values=template_values)
+
+
+@blueprint.route('/sites/<string:site_id>/comments/', methods=('GET', ))
+@login_required
+def site_comments(site_id):
+    site = SiteModel.query.filter_by(id=site_id, owner=current_user).first()
+
+    if site is None:
+        abort(404)
+
+    template_values = {
+        'site' : site,
+    }
+
+    return render_template('sites/site_comments.html', template_values=template_values)
+
+
+@blueprint.route('/sites/<string:site_id>/threads/', methods=('GET', ))
+@login_required
+def site_threads(site_id):
+    site = SiteModel.query.filter_by(id=site_id, owner=current_user).first()
+
+    if site is None:
+        abort(404)
+
+    template_values = {
+        'site' : site,
+    }
+
+    return render_template('sites/site_threads.html', template_values=template_values)

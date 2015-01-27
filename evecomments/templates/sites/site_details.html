@@ -1,53 +1,27 @@
 {% extends "base_with_nav.html" %}
 {% block content %}
     <div class="row">
-        <div class="col-md-12">
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#details" role="tab" data-toggle="tab">Details</a></li>
-                <li><a href="#comments" role="tab" data-toggle="tab">Comments</a></li>
-                <li><a href="#threads" role="tab" data-toggle="tab">Threads</a></li>
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="{{ url_for('sites.site_details', site_id=template_values.site.id) }}">Details</a></li>
+                <li><a href="{{ url_for('sites.site_comments', site_id=template_values.site.id) }}">Comments</a></li>
+                <li><a href="{{ url_for('sites.site_threads', site_id=template_values.site.id) }}">Threads</a></li>
             </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="details">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Site ID: </label>
-                            <p class="col-sm-5">{{ template_values.site.id }}</p>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Site ID: </label>
+                        <p class="col-sm-5">{{ template_values.site.id }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="siteNameInput" class="col-sm-2 control-label">Site Name:</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="siteNameInput" placeholder="{{ template_values.site.name }}">
                         </div>
-                        <div class="form-group">
-                            <label for="siteNameInput" class="col-sm-2 control-label">Site Name:</label>
-                            <div class="col-sm-5">
-                                <input type="text" class="form-control" id="siteNameInput" placeholder="{{ template_values.site.name }}">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="tab-pane" id="comments">
-                    {% for comment in template_values.site.comments %}
-                        {{ macros.add_comment(comment) }}
-                    {% endfor %}
-                </div>
-                <div class="tab-pane" id="threads">
-                    <table class="table">
-                        <tr>
-                            <th>ID</th>
-                            <th>URL</th>
-                            <th>Title</th>
-                            <th>Created On</th>
-                        </tr>
-                        {% for thread in template_values.site.threads %}
-                            <tr>
-                                <td>{{ thread.id }}</td>
-                                <td>{{ thread.url }}</td>
-                                <td>{{ thread.title }}</td>
-                                <td>{{ thread.created_on }}</td>
-                                <td>
-                                    Edit button here
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

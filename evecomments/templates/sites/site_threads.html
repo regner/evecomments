@@ -1,0 +1,35 @@
+{% extends "base_with_nav.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="{{ url_for('sites.site_details', site_id=template_values.site.id) }}">Details</a></li>
+                <li><a href="{{ url_for('sites.site_comments', site_id=template_values.site.id) }}">Comments</a></li>
+                <li><a href="{{ url_for('sites.site_threads', site_id=template_values.site.id) }}">Threads</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>URL</th>
+                        <th>Title</th>
+                        <th>Created On</th>
+                    </tr>
+                    {% for thread in template_values.site.threads %}
+                        <tr>
+                            <td>{{ thread.id }}</td>
+                            <td>{{ thread.url }}</td>
+                            <td>{{ thread.title }}</td>
+                            <td>{{ thread.created_on }}</td>
+                            <td>
+                                Edit button here
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
