@@ -5,7 +5,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="{{ url_for('sites.site_details', site_id=template_values.site.id) }}">Details</a></li>
                 <li><a href="{{ url_for('sites.site_comments', site_id=template_values.site.id) }}">Comments</a></li>
-                <li><a href="{{ url_for('sites.site_threads', site_id=template_values.site.id) }}">Threads</a></li>
+                <li class="active"><a href="{{ url_for('sites.site_threads', site_id=template_values.site.id) }}">Threads</a></li>
             </ul>
         </div>
         <div class="col-md-9">
