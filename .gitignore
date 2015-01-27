@@ -4,3 +4,4 @@
 env/
 evecomments/evecomments.db
 evecomments/static/vendor/
+evecomments.db

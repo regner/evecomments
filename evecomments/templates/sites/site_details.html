@@ -9,8 +9,18 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="details">
-                    {{ template_values.site.id }}
-                    {{ template_values.site.name }}
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Site ID: </label>
+                            <p class="col-sm-5">{{ template_values.site.id }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="siteNameInput" class="col-sm-2 control-label">Site Name:</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="siteNameInput" placeholder="{{ template_values.site.name }}">
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="tab-pane" id="comments">
                     {% for comment in template_values.site.comments %}
@@ -20,15 +30,20 @@
                 <div class="tab-pane" id="threads">
                     <table class="table">
                         <tr>
-                            <th>Thread ID</th>
-                            <th>Thread URL</th>
-                            <th>Thread Title</th>
+                            <th>ID</th>
+                            <th>URL</th>
+                            <th>Title</th>
+                            <th>Created On</th>
                         </tr>
                         {% for thread in template_values.site.threads %}
                             <tr>
                                 <td>{{ thread.id }}</td>
                                 <td>{{ thread.url }}</td>
                                 <td>{{ thread.title }}</td>
+                                <td>{{ thread.created_on }}</td>
+                                <td>
+                                    Edit button here
+                                </td>
                             </tr>
                         {% endfor %}
                     </table>
