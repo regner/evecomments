@@ -10,17 +10,22 @@
         </div>
         <div class="col-md-9">
             <div class="panel panel-default">
-                <form class="form-horizontal">
+                <form method="POST" class="form-horizontal" role="form" action="{{ url_for('sites.site_details', site_id=template_values.site.id) }}">
+                    {{ template_values.edit_site_form.hidden_tag() }}
+
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Site ID: </label>
+                        <label class="control-label col-sm-2">Site ID: </label>
                         <p class="col-sm-5">{{ template_values.site.id }}</p>
                     </div>
+
                     <div class="form-group">
-                        <label for="siteNameInput" class="col-sm-2 control-label">Site Name:</label>
-                        <div class="col-sm-5">
-                            <input type="text" class="form-control" id="siteNameInput" placeholder="{{ template_values.site.name }}">
+                        <label for="{{ template_values.edit_site_form.name.id }}" class="control-label col-sm-2">{{ template_values.edit_site_form.name.label }}</label>
+                        <div class="col-sm-10">
+                            {{ template_values.edit_site_form.name(size=30, class="form-control", placeholder=template_values.site.name) }}
                         </div>
                     </div>
+
+                    <input type="submit" class="btn btn-primary" value="Save Changes">
                 </form>
             </div>
         </div>

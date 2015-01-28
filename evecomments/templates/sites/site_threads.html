@@ -24,11 +24,33 @@
                             <td>{{ thread.title }}</td>
                             <td>{{ thread.created_on }}</td>
                             <td>
-                                Edit button here
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit_thread">
+                                    Edit
+                                </button>
                             </td>
                         </tr>
                     {% endfor %}
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="modal fade" id="edit_thread" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Thread</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" class="form-horizontal" role="form" action="{{ url_for('sites.site_threads', site_id=template_values.site.id) }}">
+                            {{ template_values.edit_thread_form.hidden_tag() }}
+
+                            <input type="submit" class="btn btn-primary" value="Edit Thread">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -13,7 +13,7 @@ class ThreadModel(db.Model):
 
     id         = db.Column(db.String(50), primary_key=True)
     title      = db.Column(db.String(50))
-    url        = db.Column(db.Integer)
+    url        = db.Column(db.String(512))
     created_on = db.Column(db.DateTime, default=db.func.now())
 
     site_id    = db.Column(db.Integer, db.ForeignKey('sites.id'), nullable=False)
